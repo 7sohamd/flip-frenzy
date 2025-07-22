@@ -29,13 +29,12 @@ export const CoinFlip = ({ isFlipping, result, onAnimationComplete }: CoinFlipPr
       <div className="flex justify-center mb-8">
         {isFlipping ? (
           <div className="w-80 h-80 flex items-center justify-center">
-            {/* @ts-ignore - Custom web component */}
-            <dotlottie-wc 
-              src="https://lottie.host/7aad6a84-3e30-4fd9-9b86-0aca89e272ff/x2K093vwbc.lottie" 
-              style={{ width: "300px", height: "300px" }}
-              speed="1" 
-              autoplay="true"
-              loop="true"
+            <iframe 
+              src="https://lottie.host/embed/7aad6a84-3e30-4fd9-9b86-0aca89e272ff/x2K093vwbc.lottie"
+              width="300"
+              height="300"
+              style={{ border: 'none' }}
+              title="Coin Flip Animation"
             />
           </div>
         ) : (
