@@ -24,8 +24,8 @@ export const Wallet = ({ balance, lastBet, lastResult }: WalletProps) => {
             <Coins className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <p className="text-sm font-medium text-muted-foreground">Wallet Balance</p>
-            <p className="text-3xl font-bold text-casino-gold bg-shimmer bg-size-200 animate-shimmer bg-clip-text">
+            <p className="text-sm font-medium text-muted-foreground font-retro">WALLET BALANCE</p>
+            <p className="text-3xl font-bold text-casino-gold bg-shimmer bg-size-200 animate-shimmer bg-clip-text font-digital tracking-wider">
               {formatMoney(balance)}
             </p>
           </div>

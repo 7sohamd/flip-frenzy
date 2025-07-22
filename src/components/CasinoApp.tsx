@@ -79,13 +79,13 @@ export const CasinoApp = () => {
         <Card className="bg-gradient-card border-casino-gold/30 p-6 text-center shadow-2xl">
           <div className="flex items-center justify-center gap-3 mb-2">
             <Dice6 className="w-8 h-8 text-casino-gold" />
-            <h1 className="text-4xl font-bold bg-gradient-gold bg-clip-text text-transparent">
-              Golden Coin Casino
+            <h1 className="text-4xl font-bold bg-gradient-gold bg-clip-text text-transparent font-casino tracking-wider">
+              GOLDEN COIN CASINO
             </h1>
             <Sparkles className="w-8 h-8 text-casino-gold" />
           </div>
-          <p className="text-lg text-casino-gold/80">
-            Double or Nothing • 50/50 Chance • Pure Luck
+          <p className="text-lg text-casino-gold/80 font-retro tracking-wide">
+            DOUBLE OR NOTHING • 50/50 CHANCE • PURE LUCK
           </p>
         </Card>
       </div>
@@ -120,31 +120,31 @@ export const CasinoApp = () => {
 
         {/* Game Rules */}
         <Card className="bg-gradient-card border-casino-gold/30 p-6 shadow-xl">
-          <h3 className="text-xl font-bold text-casino-gold mb-4 text-center">How to Play</h3>
+          <h3 className="text-xl font-bold text-casino-gold mb-4 text-center font-casino tracking-wider">HOW TO PLAY</h3>
           <div className="grid md:grid-cols-3 gap-4 text-center">
             <div className="space-y-2">
-              <div className="w-12 h-12 bg-gradient-gold rounded-full flex items-center justify-center mx-auto text-primary-foreground font-bold">
+              <div className="w-12 h-12 bg-gradient-gold rounded-full flex items-center justify-center mx-auto text-primary-foreground font-bold font-digital">
                 1
               </div>
-              <h4 className="font-semibold">Choose Your Side</h4>
+              <h4 className="font-semibold font-retro">CHOOSE YOUR SIDE</h4>
               <p className="text-sm text-muted-foreground">
                 Pick either Heads (👑) or Tails (🪙)
               </p>
             </div>
             <div className="space-y-2">
-              <div className="w-12 h-12 bg-gradient-gold rounded-full flex items-center justify-center mx-auto text-primary-foreground font-bold">
+              <div className="w-12 h-12 bg-gradient-gold rounded-full flex items-center justify-center mx-auto text-primary-foreground font-bold font-digital">
                 2
               </div>
-              <h4 className="font-semibold">Place Your Bet</h4>
+              <h4 className="font-semibold font-retro">PLACE YOUR BET</h4>
               <p className="text-sm text-muted-foreground">
                 Select your amount from $1 to $100
               </p>
             </div>
             <div className="space-y-2">
-              <div className="w-12 h-12 bg-gradient-gold rounded-full flex items-center justify-center mx-auto text-primary-foreground font-bold">
+              <div className="w-12 h-12 bg-gradient-gold rounded-full flex items-center justify-center mx-auto text-primary-foreground font-bold font-digital">
                 3
               </div>
-              <h4 className="font-semibold">Double or Nothing</h4>
+              <h4 className="font-semibold font-retro">DOUBLE OR NOTHING</h4>
               <p className="text-sm text-muted-foreground">
                 Win double your bet or lose it all!
               </p>

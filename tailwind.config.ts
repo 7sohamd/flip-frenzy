@@ -71,6 +71,11 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			fontFamily: {
+				'casino': ['Bebas Neue', 'sans-serif'],
+				'digital': ['Orbitron', 'monospace'],
+				'retro': ['Staatliches', 'cursive'],
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',

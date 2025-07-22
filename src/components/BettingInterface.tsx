@@ -43,7 +43,7 @@ export const BettingInterface = ({
       size="lg"
       onClick={() => onAmountSelect(amount)}
       disabled={disabled || amount > balance}
-      className={`w-full h-16 text-lg font-bold ${
+      className={`w-full h-16 text-lg font-bold font-digital ${
         selectedAmount === amount ? 'ring-2 ring-casino-gold' : ''
       } ${amount > balance ? 'opacity-50' : ''}`}
     >
@@ -58,7 +58,7 @@ export const BettingInterface = ({
 
   return (
     <Card className="bg-gradient-card border-casino-gold/30 p-6 shadow-2xl">
-      <h2 className="text-2xl font-bold text-casino-gold mb-6 text-center">Place Your Bet</h2>
+      <h2 className="text-2xl font-bold text-casino-gold mb-6 text-center font-casino tracking-wider">PLACE YOUR BET</h2>
       
       {/* Side Selection */}
       <div className="grid grid-cols-2 gap-4 mb-6">
@@ -67,7 +67,7 @@ export const BettingInterface = ({
           size="lg"
           onClick={() => onSideSelect('heads')}
           disabled={isFlipping}
-          className={`h-20 text-xl font-bold ${
+          className={`h-20 text-xl font-bold font-casino tracking-wider ${
             selectedSide === 'heads' ? 'ring-2 ring-casino-gold' : ''
           }`}
         >
@@ -79,7 +79,7 @@ export const BettingInterface = ({
           size="lg"
           onClick={() => onSideSelect('tails')}
           disabled={isFlipping}
-          className={`h-20 text-xl font-bold ${
+          className={`h-20 text-xl font-bold font-casino tracking-wider ${
             selectedSide === 'tails' ? 'ring-2 ring-casino-gold' : ''
           }`}
         >
@@ -122,7 +122,7 @@ export const BettingInterface = ({
         size="lg"
         onClick={onPlaceBet}
         disabled={!canPlaceBet}
-        className="w-full h-16 text-xl font-bold"
+        className="w-full h-16 text-xl font-bold font-casino tracking-wide"
       >
         {isFlipping ? (
           "Flipping..."

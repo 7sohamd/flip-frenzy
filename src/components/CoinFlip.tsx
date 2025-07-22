@@ -24,24 +24,18 @@ export const CoinFlip = ({ isFlipping, result, onAnimationComplete }: CoinFlipPr
 
   return (
     <Card className="bg-gradient-card border-casino-gold/30 p-8 text-center shadow-2xl">
-      <h2 className="text-2xl font-bold text-casino-gold mb-6">Coin Flip</h2>
+      <h2 className="text-2xl font-bold text-casino-gold mb-6 font-casino tracking-wider">COIN FLIP</h2>
       
       <div className="flex justify-center mb-8">
         {isFlipping ? (
           <div className="w-80 h-80 flex items-center justify-center">
-            <div 
-              dangerouslySetInnerHTML={{
-                __html: `
-                  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
-                  <dotlottie-wc 
-                    src="https://lottie.host/7aad6a84-3e30-4fd9-9b86-0aca89e272ff/x2K093vwbc.lottie" 
-                    style="width: 300px; height: 300px;" 
-                    speed="1" 
-                    autoplay 
-                    loop>
-                  </dotlottie-wc>
-                `
-              }}
+            {/* @ts-ignore - Custom web component */}
+            <dotlottie-wc 
+              src="https://lottie.host/7aad6a84-3e30-4fd9-9b86-0aca89e272ff/x2K093vwbc.lottie" 
+              style={{ width: "300px", height: "300px" }}
+              speed="1" 
+              autoplay="true"
+              loop="true"
             />
           </div>
         ) : (
@@ -59,9 +53,9 @@ export const CoinFlip = ({ isFlipping, result, onAnimationComplete }: CoinFlipPr
 
       {showResult && result && (
         <div className="space-y-4 animate-fade-in">
-          <h3 className="text-xl font-semibold text-foreground">
-            Result: <span className={result === 'heads' ? 'text-casino-gold' : 'text-casino-green'}>
-              {result.charAt(0).toUpperCase() + result.slice(1)}
+          <h3 className="text-xl font-semibold text-foreground font-casino tracking-wide">
+            RESULT: <span className={`font-digital text-2xl ${result === 'heads' ? 'text-casino-gold' : 'text-casino-green'}`}>
+              {result.toUpperCase()}
             </span>
           </h3>
         </div>
