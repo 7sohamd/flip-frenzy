@@ -105,6 +105,17 @@ export const BettingInterface = ({
               <BetButton key={amount} amount={amount} disabled={isFlipping} />
             ))}
           </div>
+          <Button
+            variant={selectedAmount === balance ? "casino" : "casino-bet"}
+            size="lg"
+            onClick={() => onAmountSelect(balance)}
+            disabled={isFlipping || balance === 0}
+            className={`w-full h-16 text-lg font-bold font-digital mt-3 ${
+              selectedAmount === balance ? 'ring-2 ring-casino-gold' : ''
+            }`}
+          >
+            BET ALL ({formatMoney(balance)})
+          </Button>
         </TabsContent>
         
         <TabsContent value="high-stakes" className="space-y-4 mt-4">
@@ -113,6 +124,17 @@ export const BettingInterface = ({
               <BetButton key={amount} amount={amount} disabled={isFlipping} />
             ))}
           </div>
+          <Button
+            variant={selectedAmount === balance ? "casino" : "casino-bet"}
+            size="lg"
+            onClick={() => onAmountSelect(balance)}
+            disabled={isFlipping || balance === 0}
+            className={`w-full h-16 text-lg font-bold font-digital mt-3 ${
+              selectedAmount === balance ? 'ring-2 ring-casino-gold' : ''
+            }`}
+          >
+            BET ALL ({formatMoney(balance)})
+          </Button>
         </TabsContent>
       </Tabs>
 
