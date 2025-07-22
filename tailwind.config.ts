@@ -52,6 +52,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				casino: {
+					felt: 'hsl(var(--casino-felt))',
+					gold: 'hsl(var(--casino-gold))',
+					'gold-light': 'hsl(var(--casino-gold-light))',
+					red: 'hsl(var(--casino-red))',
+					green: 'hsl(var(--casino-green))',
+					shadow: 'hsl(var(--casino-shadow))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +92,39 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'coin-flip': {
+					'0%': { transform: 'rotateY(0deg)' },
+					'50%': { transform: 'rotateY(90deg)' },
+					'100%': { transform: 'rotateY(0deg)' }
+				},
+				'pulse-gold': {
+					'0%, 100%': { 
+						transform: 'scale(1)',
+						boxShadow: '0 0 0 0 hsl(var(--casino-gold) / 0.4)'
+					},
+					'50%': { 
+						transform: 'scale(1.05)',
+						boxShadow: '0 0 0 10px hsl(var(--casino-gold) / 0)'
+					}
+				},
+				'shimmer': {
+					'0%': { backgroundPosition: '-200% 0' },
+					'100%': { backgroundPosition: '200% 0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'coin-flip': 'coin-flip 1s ease-in-out',
+				'pulse-gold': 'pulse-gold 2s infinite',
+				'shimmer': 'shimmer 2s infinite linear'
+			},
+			backgroundImage: {
+				'gradient-gold': 'var(--gradient-gold)',
+				'gradient-felt': 'var(--gradient-felt)',
+				'gradient-card': 'var(--gradient-card)',
+				'shimmer': 'linear-gradient(90deg, transparent, hsl(var(--casino-gold) / 0.2), transparent)'
 			}
 		}
 	},

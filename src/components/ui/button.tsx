@@ -18,6 +18,9 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        casino: "bg-gradient-gold text-primary-foreground font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border border-casino-gold-light",
+        "casino-bet": "bg-casino-felt text-foreground font-semibold hover:bg-casino-green/80 border border-casino-gold/30 shadow-md hover:shadow-lg transition-all duration-200",
+        "casino-danger": "bg-casino-red text-foreground font-semibold hover:bg-casino-red/80 border border-casino-red/50 shadow-md hover:shadow-lg transition-all duration-200",
       },
       size: {
         default: "h-10 px-4 py-2",
