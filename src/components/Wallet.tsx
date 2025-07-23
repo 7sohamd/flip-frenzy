@@ -18,7 +18,7 @@ export const Wallet = ({ balance, lastBet, lastResult, isPremium }: WalletProps)
   };
 
   return (
-    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-gold' : 'bg-gradient-card border-casino-gold/30'} p-6 shadow-2xl transition-colors duration-500`}>
+    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-md' : 'bg-gradient-card border-casino-gold/30'} p-6 shadow-md transition-colors duration-500`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className={`p-3 rounded-full shadow-lg ${isPremium ? 'bg-yellow-300' : 'bg-gradient-gold'}`}> 

@@ -25,7 +25,7 @@ export const CoinFlip = ({ isFlipping, result, onAnimationComplete, isPremium }:
   }, [isFlipping, onAnimationComplete]);
 
   return (
-    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-gold' : 'bg-gradient-card border-casino-gold/30'} p-8 text-center shadow-2xl transition-colors duration-500`}>
+    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-md' : 'bg-gradient-card border-casino-gold/30'} p-8 text-center shadow-md transition-colors duration-500`}>
       <h2 className={`text-2xl font-bold mb-6 font-casino tracking-wider ${isPremium ? 'text-yellow-700' : 'text-casino-gold'}`}>COIN FLIP</h2>
       
       <div className="flex justify-center mb-8">
@@ -40,7 +40,7 @@ export const CoinFlip = ({ isFlipping, result, onAnimationComplete, isPremium }:
             />
           </div>
         ) : (
-          <div className={`w-80 h-80 rounded-full border-8 shadow-2xl flex items-center justify-center transition-all duration-500 ${
+          <div className={`w-80 h-80 rounded-full border-8 shadow-md flex items-center justify-center transition-all duration-500 ${
             isPremium
               ? 'border-yellow-400'
               : 'border-casino-gold'

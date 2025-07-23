@@ -59,7 +59,7 @@ export const BettingInterface = ({
   );
 
   return (
-    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-gold' : 'bg-gradient-card border-casino-gold/30'} p-4 shadow-xl transition-colors duration-500`}>
+    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-md' : 'bg-gradient-card border-casino-gold/30'} p-4 shadow-md transition-colors duration-500`}>
       <div>
         <h2 className={`text-xl font-bold mb-4 text-center font-casino tracking-wider ${isPremium ? 'text-yellow-700' : 'text-casino-gold'}`}>PLACE YOUR BET</h2>
         {/* Side Selection */}

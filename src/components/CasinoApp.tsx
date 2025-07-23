@@ -166,7 +166,7 @@ export const CasinoApp = () => {
     <div className={`min-h-screen p-4 ${isPremium ? 'bg-white' : 'bg-background'} transition-colors duration-500`}> 
       {/* Coupon input for admin (only when balance is 0) */}
       {balance === 0 && (
-        <div className="absolute top-4 right-8 z-50 flex flex-col items-end">
+        <div className="fixed top-16 right-4 z-40 flex flex-col items-end">
           <div className="flex items-center gap-2 bg-yellow-50 border border-yellow-300 rounded px-2 py-1 shadow">
             <input
               type="text"
@@ -240,7 +240,7 @@ export const CasinoApp = () => {
       </div>
       {/* Header */}
       <div className="max-w-6xl mx-auto mb-8">
-        <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-gold' : 'bg-gradient-card border-casino-gold/30'} p-6 text-center shadow-2xl transition-colors duration-500`}>
+        <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-md' : 'bg-gradient-card border-casino-gold/30'} p-6 text-center shadow-md transition-colors duration-500`}>
           <div className="flex items-center justify-center gap-3 mb-2">
             <Dice6 className={`w-8 h-8 ${isPremium ? 'text-yellow-500' : 'text-casino-gold'}`} />
             <h1 className={`text-4xl font-bold ${isPremium ? 'text-yellow-600' : 'bg-gradient-gold bg-clip-text text-transparent'} font-casino tracking-wider`}>
@@ -257,11 +257,9 @@ export const CasinoApp = () => {
           {/* Auth controls moved to top right */}
         </Card>
         {balance > 1000 && (
-          <div className="w-full flex justify-center mt-2">
-            <span className="text-xs font-retro px-4 py-2 rounded bg-yellow-100 text-yellow-900 border border-yellow-300 shadow-sm animate-pulse">
-              You are among the top 0.1% lucky players to reach this amount
-            </span>
-          </div>
+          <p className={`text-center text-xs font-retro mt-2 ${isPremium ? 'text-yellow-700' : 'text-casino-gold/80'}`}>
+            You are among the top 0.1% lucky players to reach this amount
+          </p>
         )}
       </div>
       <div className="max-w-6xl mx-auto grid gap-8">
@@ -293,7 +291,7 @@ export const CasinoApp = () => {
           />
         </div>
         {/* Game Rules */}
-        <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-gold' : 'bg-gradient-card border-casino-gold/30'} p-6 shadow-xl transition-colors duration-500`}>
+        <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow' : 'bg-gradient-card border-casino-gold/30'} p-6 shadow transition-colors duration-500`}>
           <h3 className={`text-xl font-bold mb-4 text-center font-casino tracking-wider ${isPremium ? 'text-yellow-700' : 'text-casino-gold'}`}>HOW TO PLAY</h3>
           <div className="grid md:grid-cols-3 gap-4 text-center">
             <div className="space-y-2">
@@ -321,7 +319,7 @@ export const CasinoApp = () => {
         </Card>
       </div>
       {/* Footer */}
-      <footer className={`w-full mt-8 flex items-end justify-between px-4 py-3 ${isPremium ? 'bg-white border-t-2 border-yellow-200' : 'bg-background border-t border-casino-gold/30'}`}>
+      <footer className={`w-full mt-8 flex items-end justify-between px-4 py-3 ${isPremium ? 'bg-white border-t-2 border-yellow-200' : 'bg-background border-t border-casino-gold/30'} shadow`}>
         <div className="flex-1 text-center text-xs font-retro" style={{ color: '#7c4a03' }}>
           Made by Soham 2025
         </div>
