@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Crown, CircleDollarSign } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface CoinFlipProps {
   isFlipping: boolean;
   result: 'heads' | 'tails' | null;
   onAnimationComplete: () => void;
+  isPremium?: boolean;
 }
 
-export const CoinFlip = ({ isFlipping, result, onAnimationComplete }: CoinFlipProps) => {
+export const CoinFlip = ({ isFlipping, result, onAnimationComplete, isPremium }: CoinFlipProps) => {
   const [showResult, setShowResult] = useState(false);
 
   useEffect(() => {
@@ -23,8 +25,8 @@ export const CoinFlip = ({ isFlipping, result, onAnimationComplete }: CoinFlipPr
   }, [isFlipping, onAnimationComplete]);
 
   return (
-    <Card className="bg-gradient-card border-casino-gold/30 p-8 text-center shadow-2xl">
-      <h2 className="text-2xl font-bold text-casino-gold mb-6 font-casino tracking-wider">COIN FLIP</h2>
+    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-gold' : 'bg-gradient-card border-casino-gold/30'} p-8 text-center shadow-2xl transition-colors duration-500`}>
+      <h2 className={`text-2xl font-bold mb-6 font-casino tracking-wider ${isPremium ? 'text-yellow-700' : 'text-casino-gold'}`}>COIN FLIP</h2>
       
       <div className="flex justify-center mb-8">
         {isFlipping ? (
@@ -38,22 +40,32 @@ export const CoinFlip = ({ isFlipping, result, onAnimationComplete }: CoinFlipPr
             />
           </div>
         ) : (
-          <div className={`w-80 h-80 rounded-full border-8 border-casino-gold shadow-2xl flex items-center justify-center text-6xl font-bold transition-all duration-500 ${
-            result === 'heads' 
-              ? 'bg-gradient-gold text-primary-foreground animate-pulse-gold' 
-              : result === 'tails' 
-              ? 'bg-casino-felt text-foreground animate-pulse-gold'
-              : 'bg-gradient-card text-muted-foreground'
+          <div className={`w-80 h-80 rounded-full border-8 shadow-2xl flex items-center justify-center transition-all duration-500 ${
+            isPremium
+              ? 'border-yellow-400'
+              : 'border-casino-gold'
+          } ${
+            result === 'heads'
+              ? isPremium ? 'bg-yellow-200 animate-pulse' : 'bg-gradient-gold animate-pulse-gold'
+              : result === 'tails'
+              ? isPremium ? 'bg-yellow-50 animate-pulse' : 'bg-casino-felt animate-pulse-gold'
+              : isPremium ? 'bg-white' : 'bg-gradient-card'
           }`}>
-            {result === 'heads' ? '👑' : result === 'tails' ? '🪙' : '?'}
+            {result === 'heads' ? (
+              <Crown className={`w-16 h-16 m-0 p-0 ${isPremium ? 'text-yellow-700' : 'text-casino-gold'}`} />
+            ) : result === 'tails' ? (
+              <CircleDollarSign className={`w-14 h-14 m-0 p-0 ${isPremium ? 'text-yellow-700' : 'text-casino-gold'}`} />
+            ) : (
+              <span className="text-6xl font-bold">?</span>
+            )}
           </div>
         )}
       </div>
 
       {showResult && result && (
         <div className="space-y-4 animate-fade-in">
-          <h3 className="text-xl font-semibold text-foreground font-casino tracking-wide">
-            RESULT: <span className={`font-digital text-2xl ${result === 'heads' ? 'text-casino-gold' : 'text-casino-green'}`}>
+          <h3 className={`text-xl font-semibold font-casino tracking-wide ${isPremium ? 'text-yellow-700' : 'text-foreground'}`}>
+            RESULT: <span className={`font-digital text-2xl ${isPremium ? 'text-yellow-600' : (result === 'heads' ? 'text-casino-gold' : 'text-casino-green')}`}>
               {result.toUpperCase()}
             </span>
           </h3>

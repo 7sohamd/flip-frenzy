@@ -5,9 +5,10 @@ interface WalletProps {
   balance: number;
   lastBet?: number;
   lastResult?: 'win' | 'loss';
+  isPremium?: boolean;
 }
 
-export const Wallet = ({ balance, lastBet, lastResult }: WalletProps) => {
+export const Wallet = ({ balance, lastBet, lastResult, isPremium }: WalletProps) => {
   const formatMoney = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -17,15 +18,15 @@ export const Wallet = ({ balance, lastBet, lastResult }: WalletProps) => {
   };
 
   return (
-    <Card className="bg-gradient-card border-casino-gold/30 p-6 shadow-2xl">
+    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-gold' : 'bg-gradient-card border-casino-gold/30'} p-6 shadow-2xl transition-colors duration-500`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-gradient-gold rounded-full shadow-lg">
-            <Coins className="h-6 w-6 text-primary-foreground" />
+          <div className={`p-3 rounded-full shadow-lg ${isPremium ? 'bg-yellow-300' : 'bg-gradient-gold'}`}> 
+            <Coins className={`h-6 w-6 ${isPremium ? 'text-yellow-900' : 'text-primary-foreground'}`} />
           </div>
           <div>
-            <p className="text-sm font-medium text-muted-foreground font-retro">WALLET BALANCE</p>
-            <p className="text-3xl font-bold text-casino-gold bg-shimmer bg-size-200 animate-shimmer bg-clip-text font-digital tracking-wider">
+            <p className={`text-sm font-medium font-retro ${isPremium ? 'text-yellow-700' : 'text-muted-foreground'}`}>WALLET BALANCE</p>
+            <p className={`text-3xl font-bold font-digital tracking-wider ${isPremium ? 'text-yellow-600' : 'text-casino-gold bg-shimmer bg-size-200 animate-shimmer bg-clip-text'}`}>
               {formatMoney(balance)}
             </p>
           </div>
@@ -34,13 +35,13 @@ export const Wallet = ({ balance, lastBet, lastResult }: WalletProps) => {
         {lastBet && lastResult && (
           <div className={`flex items-center gap-2 px-3 py-2 rounded-lg ${
             lastResult === 'win' 
-              ? 'bg-casino-green/20 text-casino-green border border-casino-green/30' 
-              : 'bg-casino-red/20 text-casino-red border border-casino-red/30'
+              ? isPremium ? 'bg-yellow-100 text-yellow-700 border border-yellow-400' : 'bg-casino-green/20 text-casino-green border border-casino-green/30'
+              : isPremium ? 'bg-yellow-50 text-yellow-500 border border-yellow-200' : 'bg-casino-red/20 text-casino-red border border-casino-red/30'
           }`}>
             {lastResult === 'win' ? (
-              <TrendingUp className="h-4 w-4" />
+              <TrendingUp className={`h-4 w-4 ${isPremium ? 'text-yellow-700' : ''}`} />
             ) : (
-              <TrendingDown className="h-4 w-4" />
+              <TrendingDown className={`h-4 w-4 ${isPremium ? 'text-yellow-500' : ''}`} />
             )}
             <span className="font-semibold">
               {lastResult === 'win' ? '+' : '-'}{formatMoney(lastBet)}

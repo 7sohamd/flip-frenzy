@@ -13,6 +13,7 @@ interface BettingInterfaceProps {
   onSideSelect: (side: 'heads' | 'tails') => void;
   onPlaceBet: () => void;
   isFlipping: boolean;
+  isPremium?: boolean;
 }
 
 export const BettingInterface = ({
@@ -22,7 +23,8 @@ export const BettingInterface = ({
   onAmountSelect,
   onSideSelect,
   onPlaceBet,
-  isFlipping
+  isFlipping,
+  isPremium
 }: BettingInterfaceProps) => {
   const regularBets = [1, 2, 5, 10];
   const highStakesBets = [20, 30, 50, 100];
@@ -57,120 +59,114 @@ export const BettingInterface = ({
   );
 
   return (
-    <Card className="bg-gradient-card border-casino-gold/30 p-6 shadow-2xl">
-      <h2 className="text-2xl font-bold text-casino-gold mb-6 text-center font-casino tracking-wider">PLACE YOUR BET</h2>
-      
-      {/* Side Selection */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <Button
-          variant={selectedSide === 'heads' ? "casino" : "casino-bet"}
-          size="lg"
-          onClick={() => onSideSelect('heads')}
-          disabled={isFlipping}
-          className={`h-20 text-xl font-bold font-casino tracking-wider ${
-            selectedSide === 'heads' ? 'ring-2 ring-casino-gold' : ''
-          }`}
-        >
-          <Crown className="w-8 h-8 mr-2" />
-          HEADS
-        </Button>
-        <Button
-          variant={selectedSide === 'tails' ? "casino" : "casino-bet"}
-          size="lg"
-          onClick={() => onSideSelect('tails')}
-          disabled={isFlipping}
-          className={`h-20 text-xl font-bold font-casino tracking-wider ${
-            selectedSide === 'tails' ? 'ring-2 ring-casino-gold' : ''
-          }`}
-        >
-          <Coins className="w-8 h-8 mr-2" />
-          TAILS
-        </Button>
-      </div>
-
-      {/* Betting Amount Tabs */}
-      <Tabs defaultValue="regular" className="w-full mb-6">
-        <TabsList className="grid w-full grid-cols-2 bg-muted/20">
-          <TabsTrigger value="regular" className="data-[state=active]:bg-casino-felt">
-            Regular Bets
-          </TabsTrigger>
-          <TabsTrigger value="high-stakes" className="data-[state=active]:bg-casino-red">
-            High Stakes 🔥
-          </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="regular" className="space-y-4 mt-4">
-          <div className="grid grid-cols-2 gap-3">
-            {regularBets.map((amount) => (
-              <BetButton key={amount} amount={amount} disabled={isFlipping} />
-            ))}
-          </div>
+    <Card className={`${isPremium ? 'bg-white border-2 border-yellow-400 shadow-gold' : 'bg-gradient-card border-casino-gold/30'} p-4 shadow-xl transition-colors duration-500`}>
+      <div>
+        <h2 className={`text-xl font-bold mb-4 text-center font-casino tracking-wider ${isPremium ? 'text-yellow-700' : 'text-casino-gold'}`}>PLACE YOUR BET</h2>
+        {/* Side Selection */}
+        <div className="grid grid-cols-2 gap-2 mb-4">
           <Button
-            variant={selectedAmount === balance ? "casino" : "casino-bet"}
+            variant={selectedSide === 'heads' ? "casino" : "casino-bet"}
             size="lg"
-            onClick={() => onAmountSelect(balance)}
-            disabled={isFlipping || balance === 0}
-            className={`w-full h-16 text-lg font-bold font-digital mt-3 ${
-              selectedAmount === balance ? 'ring-2 ring-casino-gold' : ''
-            }`}
+            onClick={() => onSideSelect('heads')}
+            disabled={isFlipping}
+            className={`h-16 text-lg font-bold font-casino tracking-wider ${selectedSide === 'heads' ? (isPremium ? 'ring-2 ring-yellow-400' : 'ring-2 ring-casino-gold') : ''} ${isPremium ? 'bg-yellow-100 text-yellow-700 border-yellow-400' : ''}`}
           >
-            BET ALL ({formatMoney(balance)})
+            <Crown className="w-7 h-7 mr-2" />
+            HEADS
           </Button>
-        </TabsContent>
-        
-        <TabsContent value="high-stakes" className="space-y-4 mt-4">
-          <div className="grid grid-cols-2 gap-3">
-            {highStakesBets.map((amount) => (
-              <BetButton key={amount} amount={amount} disabled={isFlipping} />
-            ))}
-          </div>
           <Button
-            variant={selectedAmount === balance ? "casino" : "casino-bet"}
+            variant={selectedSide === 'tails' ? "casino" : "casino-bet"}
             size="lg"
-            onClick={() => onAmountSelect(balance)}
-            disabled={isFlipping || balance === 0}
-            className={`w-full h-16 text-lg font-bold font-digital mt-3 ${
-              selectedAmount === balance ? 'ring-2 ring-casino-gold' : ''
-            }`}
+            onClick={() => onSideSelect('tails')}
+            disabled={isFlipping}
+            className={`h-16 text-lg font-bold font-casino tracking-wider ${selectedSide === 'tails' ? (isPremium ? 'ring-2 ring-yellow-400' : 'ring-2 ring-casino-gold') : ''} ${isPremium ? 'bg-yellow-100 text-yellow-700 border-yellow-400' : ''}`}
           >
-            BET ALL ({formatMoney(balance)})
+            <Coins className="w-7 h-7 mr-2" />
+            TAILS
           </Button>
-        </TabsContent>
-      </Tabs>
-
-      {/* Place Bet Button */}
-      <Button
-        variant={canPlaceBet ? "casino" : "casino-danger"}
-        size="lg"
-        onClick={onPlaceBet}
-        disabled={!canPlaceBet}
-        className="w-full h-16 text-xl font-bold font-casino tracking-wide"
-      >
-        {isFlipping ? (
-          "Flipping..."
-        ) : !selectedAmount ? (
-          "Select Amount"
-        ) : !selectedSide ? (
-          "Choose Heads or Tails"
-        ) : selectedAmount > balance ? (
-          "Insufficient Balance"
-        ) : (
-          `Bet ${formatMoney(selectedAmount)} - Win ${formatMoney(selectedAmount * 2)}`
-        )}
-      </Button>
-
-      {selectedAmount && selectedSide && selectedAmount <= balance && (
-        <div className="mt-4 p-4 bg-casino-felt/20 rounded-lg border border-casino-green/30">
-          <div className="text-center text-sm text-casino-green">
-            <p className="font-semibold">
-              You're betting {formatMoney(selectedAmount)} on {selectedSide.toUpperCase()}
-            </p>
-            <p className="text-casino-gold">
-              Win: {formatMoney(selectedAmount * 2)} | Lose: {formatMoney(selectedAmount)}
-            </p>
-          </div>
         </div>
-      )}
+        {/* Betting Amount Tabs */}
+        <Tabs defaultValue="regular" className="w-full mb-4">
+          <TabsList className={`grid w-full grid-cols-2 ${isPremium ? 'bg-yellow-50' : 'bg-muted/20'}`}> 
+            <TabsTrigger
+              value="regular"
+              className={isPremium ? 'data-[state=active]:bg-yellow-800 text-yellow-800' : 'data-[state=active]:bg-casino-felt'}
+            >
+              Regular Bets
+            </TabsTrigger>
+            <TabsTrigger
+              value="high-stakes"
+              className={isPremium ? 'data-[state=active]:bg-yellow-900 text-yellow-900' : 'data-[state=active]:bg-casino-red'}
+            >
+              High Stakes 🔥
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="regular" className="space-y-2 mt-2">
+            <div className="grid grid-cols-2 gap-2">
+              {regularBets.map((amount) => (
+                <BetButton key={amount} amount={amount} disabled={isFlipping} />
+              ))}
+            </div>
+            <Button
+              variant={selectedAmount === balance ? "casino" : "casino-bet"}
+              size="lg"
+              onClick={() => onAmountSelect(balance)}
+              disabled={isFlipping || balance === 0}
+              className={`w-full h-12 text-base font-bold font-digital mt-2 ${selectedAmount === balance ? (isPremium ? 'ring-2 ring-yellow-400' : 'ring-2 ring-casino-gold') : ''} ${isPremium ? 'bg-yellow-100 text-yellow-700 border-yellow-400' : ''}`}
+            >
+              BET ALL ({formatMoney(balance)})
+            </Button>
+          </TabsContent>
+          <TabsContent value="high-stakes" className="space-y-2 mt-2">
+            <div className="grid grid-cols-2 gap-2">
+              {highStakesBets.map((amount) => (
+                <BetButton key={amount} amount={amount} disabled={isFlipping} />
+              ))}
+            </div>
+            <Button
+              variant={selectedAmount === balance ? "casino" : "casino-bet"}
+              size="lg"
+              onClick={() => onAmountSelect(balance)}
+              disabled={isFlipping || balance === 0}
+              className={`w-full h-12 text-base font-bold font-digital mt-2 ${selectedAmount === balance ? (isPremium ? 'ring-2 ring-yellow-400' : 'ring-2 ring-casino-gold') : ''} ${isPremium ? 'bg-yellow-100 text-yellow-700 border-yellow-400' : ''}`}
+            >
+              BET ALL ({formatMoney(balance)})
+            </Button>
+          </TabsContent>
+        </Tabs>
+        {/* Place Bet Button */}
+        <Button
+          variant={canPlaceBet ? "casino" : "casino-danger"}
+          size="lg"
+          onClick={onPlaceBet}
+          disabled={!canPlaceBet}
+          className={`w-full h-12 text-lg font-bold font-casino tracking-wide mt-2 ${isPremium ? 'bg-yellow-400 text-white border-yellow-500' : ''}`}
+        >
+          {isFlipping ? (
+            "Flipping..."
+          ) : !selectedAmount ? (
+            "Select Amount"
+          ) : !selectedSide ? (
+            "Choose Heads or Tails"
+          ) : selectedAmount > balance ? (
+            "Insufficient Balance"
+          ) : (
+            `Bet ${formatMoney(selectedAmount)} - Win ${formatMoney(selectedAmount * 2)}`
+          )}
+        </Button>
+        {selectedAmount && selectedSide && selectedAmount <= balance && (
+          <div className={`mt-2 p-2 rounded-lg border ${isPremium ? 'bg-yellow-50 border-yellow-300' : 'bg-casino-felt/20 border-casino-green/30'}`}>
+            <div className={`text-center text-xs ${isPremium ? 'text-yellow-700' : 'text-casino-green'}`}>
+              <p className="font-semibold">
+                You're betting {formatMoney(selectedAmount)} on {selectedSide.toUpperCase()}
+              </p>
+              <p className={isPremium ? 'text-yellow-600' : 'text-casino-gold'}>
+                Win: {formatMoney(selectedAmount * 2)} | Lose: {formatMoney(selectedAmount)}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </Card>
   );
-};
+}
